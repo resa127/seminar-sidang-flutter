@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/info_tile.dart';
 
 class DetailView extends StatelessWidget {
   const DetailView({super.key});
@@ -49,12 +50,14 @@ class DetailView extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 14),
 
             Text(
               'TESIS / SKRIPSI',
               style: theme.textTheme.labelSmall,
             ),
+
             const SizedBox(height: 5),
 
             Text(
@@ -64,15 +67,16 @@ class DetailView extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+
             const SizedBox(height: 12),
 
-            Card(
+            const Card(
               child: ListTile(
-                leading: const CircleAvatar(
+                leading: CircleAvatar(
                   child: Text('DP'),
                 ),
-                title: const Text('Dimas Pratama'),
-                subtitle: const Text(
+                title: Text('Dimas Pratama'),
+                subtitle: Text(
                   'NIM: 21051204088 • S1 Teknik Informatika',
                 ),
               ),
@@ -80,52 +84,41 @@ class DetailView extends StatelessWidget {
 
             const SizedBox(height: 18),
 
-            Text(
+            _sectionTitle(
+              context,
               'JADWAL & TEMPAT PELAKSANAAN',
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            Row(
-              children: [
-                Expanded(
-                  child: _infoCard(
-                    context,
-                    Icons.calendar_month_outlined,
-                    'Tanggal Pelaksanaan',
-                    'Senin, 18 Nov 2024',
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _infoCard(
-                    context,
-                    Icons.access_time,
-                    'Waktu Pelaksanaan',
-                    '09:00 - 10:30 WIB',
-                  ),
-                ),
-              ],
             ),
 
             const SizedBox(height: 10),
 
-            _infoCard(
-              context,
-              Icons.location_on_outlined,
-              'Ruang Ujian',
-              'Ruang Sidang Utama (Gedung B Lt. 3)',
+            const InfoTile(
+              icon: Icons.calendar_month_outlined,
+              title: 'Tanggal Pelaksanaan',
+              subtitle: 'Senin, 18 Nov 2024',
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
 
-            _infoCard(
-              context,
-              Icons.videocam_outlined,
-              'Akses Daring (Online)',
-              'Google Meet',
+            const InfoTile(
+              icon: Icons.access_time,
+              title: 'Waktu Pelaksanaan',
+              subtitle: '09:00 - 10:30 WIB',
+            ),
+
+            const SizedBox(height: 8),
+
+            const InfoTile(
+              icon: Icons.location_on_outlined,
+              title: 'Ruang Ujian',
+              subtitle: 'Ruang Sidang Utama (Gedung B Lt. 3)',
+            ),
+
+            const SizedBox(height: 8),
+
+            const InfoTile(
+              icon: Icons.videocam_outlined,
+              title: 'Akses Daring (Online)',
+              subtitle: 'Google Meet',
             ),
 
             const SizedBox(height: 18),
@@ -133,11 +126,9 @@ class DetailView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                _sectionTitle(
+                  context,
                   'DEWAN PEMBIMBING & PENGUJI',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
                 Text(
                   '3 Anggota',
@@ -145,52 +136,57 @@ class DetailView extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 10),
 
-            const _LecturerTile(
+            const InfoTile(
               icon: Icons.person_outline,
-              role: 'PEMBIMBING UTAMA',
-              name: 'Dr. Ir. Hendra Wijaya, M.T.',
-              status: 'Menyetujui',
+              title: 'PEMBIMBING UTAMA',
+              subtitle: 'Dr. Ir. Hendra Wijaya, M.T.',
+              trailingText: 'Menyetujui',
             ),
+
             const SizedBox(height: 8),
 
-            const _LecturerTile(
+            const InfoTile(
               icon: Icons.person_outline,
-              role: 'KETUA PENGUJI / PENGUJI 1',
-              name: 'Prof. Sri Wahyuni, Ph.D.',
-              status: 'Hadir',
+              title: 'KETUA PENGUJI / PENGUJI 1',
+              subtitle: 'Prof. Sri Wahyuni, Ph.D.',
+              trailingText: 'Hadir',
             ),
+
             const SizedBox(height: 8),
 
-            const _LecturerTile(
+            const InfoTile(
               icon: Icons.person_outline,
-              role: 'SEKRETARIS PENGUJI II',
-              name: 'Ahmad Fauzi, M.Kom.',
-              status: 'Hadir',
+              title: 'SEKRETARIS PENGUJI II',
+              subtitle: 'Ahmad Fauzi, M.Kom.',
+              trailingText: 'Hadir',
             ),
 
             const SizedBox(height: 18),
 
-            Text(
+            _sectionTitle(
+              context,
               'DOKUMEN & BERKAS SEMINAR',
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
             ),
+
             const SizedBox(height: 10),
 
-            const _DocumentTile(
+            const InfoTile(
               icon: Icons.description_outlined,
-              title: 'Draft_Proposal_Skripsi_Rev2.pdf',
+              title: 'Draft Proposal Skripsi',
               subtitle: '2.4 MB • Diperbarui 14 Nov 2024',
+              trailingIcon: Icons.visibility_outlined,
             ),
+
             const SizedBox(height: 8),
 
-            const _DocumentTile(
+            const InfoTile(
               icon: Icons.fact_check_outlined,
-              title: 'Lembar_Bimbingan_Disetuju.pdf',
+              title: 'Lembar Bimbingan Disetujui',
               subtitle: '850 KB • Tanda tangan digital sah',
+              trailingIcon: Icons.visibility_outlined,
             ),
 
             const SizedBox(height: 18),
@@ -228,14 +224,22 @@ class DetailView extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.how_to_reg_outlined),
               label: const Text('Daftar sekarang'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: theme.colorScheme.inverseSurface,
-                foregroundColor: theme.colorScheme.onInverseSurface,
-              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _sectionTitle(
+    BuildContext context,
+    String title,
+  ) {
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
     );
   }
 
@@ -261,7 +265,10 @@ class DetailView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: theme.textTheme.labelSmall),
+                Text(
+                  title,
+                  style: theme.textTheme.labelSmall,
+                ),
                 Text(
                   value,
                   style: theme.textTheme.bodySmall?.copyWith(
@@ -272,96 +279,6 @@ class DetailView extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _infoCard(
-    BuildContext context,
-    IconData icon,
-    String title,
-    String value,
-  ) {
-    final theme = Theme.of(context);
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, size: 18),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: theme.textTheme.labelSmall),
-                  const SizedBox(height: 3),
-                  Text(value, style: theme.textTheme.bodySmall),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _LecturerTile extends StatelessWidget {
-  final IconData icon;
-  final String role;
-  final String name;
-  final String status;
-
-  const _LecturerTile({
-    required this.icon,
-    required this.role,
-    required this.name,
-    required this.status,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Card(
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(
-          role,
-          style: theme.textTheme.labelSmall,
-        ),
-        subtitle: Text(name),
-        trailing: Text(
-          status,
-          style: theme.textTheme.labelSmall,
-        ),
-      ),
-    );
-  }
-}
-
-class _DocumentTile extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  const _DocumentTile({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.visibility_outlined),
       ),
     );
   }
