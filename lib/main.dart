@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app/theme/app_theme.dart';
-import 'presentation/views/registration_view.dart';
+import 'presentation/views/login_view.dart';
 import 'utils/constants.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class SeminarSidangApp extends StatelessWidget {
       title: Constants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const RegistrationView(),
+      home: const LoginView(),
     );
   }
 }
