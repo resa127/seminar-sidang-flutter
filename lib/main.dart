@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app/routes/app_router.dart';
 import 'app/theme/app_theme.dart';
-import 'presentation/views/login_view.dart';
 import 'utils/constants.dart';
 
 void main() {
@@ -13,11 +13,11 @@ class SeminarSidangApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: Constants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const LoginView(),
+      routerConfig: AppRouter.router,
     );
   }
 }
