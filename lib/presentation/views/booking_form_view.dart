@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BookingFormView extends StatefulWidget {
   const BookingFormView({super.key});
@@ -8,7 +9,8 @@ class BookingFormView extends StatefulWidget {
 }
 
 class _BookingFormViewState extends State<BookingFormView> {
-  final titleController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+
   String? selectedType;
   bool agreed = false;
 
@@ -16,6 +18,19 @@ class _BookingFormViewState extends State<BookingFormView> {
   void dispose() {
     titleController.dispose();
     super.dispose();
+  }
+
+  void submitForm() {
+    if (!agreed) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Centang persetujuan terlebih dahulu'),
+        ),
+      );
+      return;
+    }
+
+    context.go('/success');
   }
 
   @override
@@ -26,20 +41,23 @@ class _BookingFormViewState extends State<BookingFormView> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.go('/detail'),
         ),
         title: const Text('Form Pendaftaran'),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 16),
             child: CircleAvatar(
-              child: Icon(Icons.person, size: 18),
+              child: Icon(
+                Icons.person,
+                size: 18,
+              ),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 100),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 110),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,7 +79,11 @@ class _BookingFormViewState extends State<BookingFormView> {
             const LinearProgressIndicator(value: 0.5),
             const SizedBox(height: 18),
 
-            _sectionTitle(context, 'IDENTITAS MAHASISWA'),
+            _sectionTitle(
+              context,
+              'IDENTITAS MAHASISWA',
+            ),
+
             const SizedBox(height: 10),
 
             TextFormField(
@@ -86,15 +108,21 @@ class _BookingFormViewState extends State<BookingFormView> {
 
             const SizedBox(height: 20),
 
-            _sectionTitle(context, 'DETAIL AKADEMIK'),
+            _sectionTitle(
+              context,
+              'DETAIL AKADEMIK',
+            ),
+
             const SizedBox(height: 10),
 
             DropdownButtonFormField<String>(
-              initialValue: selectedType,
+              value: selectedType,
               decoration: const InputDecoration(
                 labelText: 'Jenis Seminar / Ujian',
               ),
-              hint: const Text('Pilih Tahapan Seminar...'),
+              hint: const Text(
+                'Pilih Tahapan Seminar...',
+              ),
               items: const [
                 DropdownMenuItem(
                   value: 'Seminar Proposal',
@@ -132,7 +160,11 @@ class _BookingFormViewState extends State<BookingFormView> {
 
             const SizedBox(height: 18),
 
-            _sectionTitle(context, 'KELENGKAPAN DOKUMEN'),
+            _sectionTitle(
+              context,
+              'KELENGKAPAN DOKUMEN',
+            ),
+
             const SizedBox(height: 10),
 
             Container(
@@ -171,9 +203,15 @@ class _BookingFormViewState extends State<BookingFormView> {
 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.description_outlined),
-                title: const Text('draft_skripsi_dimas.pdf'),
-                subtitle: const Text('3.2 MB • Siap diunggah'),
+                leading: const Icon(
+                  Icons.description_outlined,
+                ),
+                title: const Text(
+                  'draft_skripsi_dimas.pdf',
+                ),
+                subtitle: const Text(
+                  '3.2 MB • Siap diunggah',
+                ),
                 trailing: TextButton(
                   onPressed: () {},
                   child: const Text('Hapus'),
@@ -191,11 +229,12 @@ class _BookingFormViewState extends State<BookingFormView> {
                   agreed = value ?? false;
                 });
               },
+              controlAffinity:
+                  ListTileControlAffinity.leading,
               title: const Text(
                 'Saya menyatakan data yang diisikan sudah benar '
                 'dan sesuai persetujuan dosen pembimbing.',
               ),
-              controlAffinity: ListTileControlAffinity.leading,
             ),
           ],
         ),
@@ -210,18 +249,26 @@ class _BookingFormViewState extends State<BookingFormView> {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton.icon(
-                  onPressed: agreed ? () {} : null,
-                  icon: const Icon(Icons.send_outlined),
-                  label: const Text('Kirim Pendaftaran'),
+                  onPressed: submitForm,
+                  icon: const Icon(
+                    Icons.send_outlined,
+                  ),
+                  label: const Text(
+                    'Kirim Pendaftaran',
+                  ),
                 ),
               ),
+
               const SizedBox(height: 8),
+
               SizedBox(
                 width: double.infinity,
                 height: 44,
                 child: OutlinedButton(
                   onPressed: () {},
-                  child: const Text('Simpan sebagai Draf'),
+                  child: const Text(
+                    'Simpan sebagai Draf',
+                  ),
                 ),
               ),
             ],
@@ -237,7 +284,10 @@ class _BookingFormViewState extends State<BookingFormView> {
   ) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+      style: Theme.of(context)
+          .textTheme
+          .labelMedium
+          ?.copyWith(
             fontWeight: FontWeight.bold,
           ),
     );

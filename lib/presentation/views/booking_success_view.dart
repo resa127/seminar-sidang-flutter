@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BookingSuccessView extends StatelessWidget {
   const BookingSuccessView({super.key});
@@ -70,6 +71,7 @@ class BookingSuccessView extends StatelessWidget {
                           ),
                         ],
                       ),
+
                       const Divider(height: 24),
 
                       const _ResultRow(
@@ -126,7 +128,7 @@ class BookingSuccessView extends StatelessWidget {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => context.go('/home'),
                   child: const Text('Kembali ke Home'),
                 ),
               ),
@@ -137,7 +139,7 @@ class BookingSuccessView extends StatelessWidget {
                 width: double.infinity,
                 height: 44,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () => context.go('/home'),
                   child: const Text('Lihat Status Pengajuan'),
                 ),
               ),
@@ -145,7 +147,15 @@ class BookingSuccessView extends StatelessWidget {
               const SizedBox(height: 14),
 
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Fitur unduh bukti masih berupa prototype',
+                      ),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.download_outlined,
                   size: 18,

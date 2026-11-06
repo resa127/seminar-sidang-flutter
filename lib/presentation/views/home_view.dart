@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/activity_card.dart';
 import '../widgets/app_bottom_nav.dart';
@@ -49,7 +50,7 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 20),
             _buildServicesTitle(context),
             const SizedBox(height: 10),
-            _buildServices(),
+            _buildServices(context),
             const SizedBox(height: 20),
             Text(
               'Kegiatan Terdekat',
@@ -219,7 +220,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildServices() {
+  Widget _buildServices(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
       crossAxisSpacing: 10,
@@ -227,23 +228,24 @@ class HomeView extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       childAspectRatio: 1.45,
-      children: const [
+      children: [
         ServiceCard(
           icon: Icons.app_registration,
           title: 'Daftar Seminar',
           subtitle: 'Registrasi Sempro & Semhas skripsi',
+          onTap: () => context.go('/detail'),
         ),
-        ServiceCard(
+        const ServiceCard(
           icon: Icons.calendar_month,
           title: 'Jadwal Sidang',
           subtitle: 'Kalender sesi & ruang sidang',
         ),
-        ServiceCard(
+        const ServiceCard(
           icon: Icons.fact_check_outlined,
           title: 'Status Berkas',
           subtitle: 'Tracking review dosen penguji',
         ),
-        ServiceCard(
+        const ServiceCard(
           icon: Icons.history,
           title: 'Riwayat & Nilai',
           subtitle: 'Arsip berita acara & kelulusan',

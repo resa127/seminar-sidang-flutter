@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -30,11 +31,7 @@ class _LoginViewState extends State<LoginView> {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Kredensial siap dikirim ke portal kampus'),
-      ),
-    );
+    context.go('/home');
   }
 
   @override
@@ -49,9 +46,7 @@ class _LoginViewState extends State<LoginView> {
               vertical: 24,
             ),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 420,
-              ),
+              constraints: const BoxConstraints(maxWidth: 420),
               child: Column(
                 children: [
                   Container(
@@ -88,6 +83,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 8),
 
                   const Text(
@@ -99,6 +95,7 @@ class _LoginViewState extends State<LoginView> {
                       color: Color(0xFF0D1C2D),
                     ),
                   ),
+
                   const SizedBox(height: 6),
 
                   const Text(
@@ -108,6 +105,7 @@ class _LoginViewState extends State<LoginView> {
                       color: Color(0xFF505F76),
                     ),
                   ),
+
                   const SizedBox(height: 24),
 
                   Container(
@@ -199,6 +197,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ],
                               ),
+
                               const SizedBox(height: 6),
 
                               TextField(
@@ -215,6 +214,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ),
                               ),
+
                               const SizedBox(height: 14),
 
                               const Row(
@@ -237,6 +237,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ],
                               ),
+
                               const SizedBox(height: 6),
 
                               TextField(
@@ -266,6 +267,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ),
                               ),
+
                               const SizedBox(height: 8),
 
                               Align(
@@ -289,6 +291,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ),
                               ),
+
                               const SizedBox(height: 4),
 
                               SizedBox(
@@ -311,6 +314,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                 ),
                               ),
+
                               const SizedBox(height: 14),
 
                               Container(
@@ -321,8 +325,7 @@ class _LoginViewState extends State<LoginView> {
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: const Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(
                                       Icons.info_outline,
@@ -348,6 +351,7 @@ class _LoginViewState extends State<LoginView> {
                       ],
                     ),
                   ),
+
                   const SizedBox(height: 24),
 
                   const Text(
@@ -357,6 +361,7 @@ class _LoginViewState extends State<LoginView> {
                       color: Color(0xFF505F76),
                     ),
                   ),
+
                   const SizedBox(height: 4),
 
                   const Text(
